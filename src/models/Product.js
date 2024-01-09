@@ -1,7 +1,7 @@
 export class Product {
-    constructor(name, type, value) {
-        name,
-        type,
+    constructor(id, name, value) {
+        id,
+        name,        
         value
     }
 }

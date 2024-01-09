@@ -1,5 +1,6 @@
 export class Client {
-    constructor(name, email) {
+    constructor(id, name, email) {
+        id,
         name,
         email
     }
