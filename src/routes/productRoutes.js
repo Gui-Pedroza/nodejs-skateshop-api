@@ -2,9 +2,8 @@ import express, { request, response } from 'express'
 import * as productController from '../controllers/productController.js'
 const router = express.Router()
 
-// list all products
-router.get('/products', productController.getProducts)
-
-router.post('/products', productController.createProduct)
+router.get('/', productController.getProducts)
+router.post('/', productController.createProduct)
+router.delete('/delete/:id', productController.deleteProduct)
 
 export default router

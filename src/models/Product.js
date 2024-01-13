@@ -14,14 +14,18 @@ class Product {
         insert into product (id, name, value) values (${id}, ${name}, ${value}) returning name, value
         `
         const { name: sqlName, value: sqlValue} = whateverIsComingFromSQL[0]        
-        const productCreated = new Product(id, sqlName, sqlValue)
-        console.log('Produto criado:', productCreated)
+        const productCreated = new Product(id, sqlName, sqlValue)        
         return productCreated
     }
 
     async getAll() {
         const products = await sql`select * from product`        
         return products
+    }
+
+    async delete(id) {
+        const sqlResult = await sql`delete from product where id = ${id}`        
+        return sqlResult
     }
 }
 
