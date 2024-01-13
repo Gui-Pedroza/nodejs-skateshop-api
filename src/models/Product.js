@@ -24,7 +24,7 @@ class Product {
     }
 
     async delete(id) {
-        const sqlResult = await sql`delete from product where id = ${id}`        
+        const sqlResult = await sql`delete from product where id = ${id} returning *`
         return sqlResult
     }
 }
