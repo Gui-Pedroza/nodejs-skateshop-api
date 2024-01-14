@@ -27,6 +27,12 @@ class Product {
         const sqlResult = await sql`delete from product where id = ${id} returning *`
         return sqlResult
     }
+
+    async findById(id) {
+        const sqlResult = await sql`select * from product where id = ${id}`
+        console.log(sqlResult)
+        return sqlResult
+    }
 }
 
 export default Product

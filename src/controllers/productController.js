@@ -30,10 +30,23 @@ export const deleteProduct = async (request, response) => {
         const sqlResult = await productModel.delete(id)
         if (sqlResult.length === 0) {
             throw new Error('Produto não encontrado, nenhum registro deletado')
-        } 
+        }
         response.status(200).json({ message: 'Produto deletado', sqlResult })
         console.log('Deletado:', sqlResult);
     } catch (error) {
         response.status(500).send({ message: 'Deu ruim ao deletar o produto', error: error.message })
+    }
+}
+
+export const findById = async (request, response) => {
+    const id = request.params.id
+    try {
+        const sqlResult = await productModel.findById(id)
+        if (sqlResult.length === 0) {
+            throw new Error('Id não encontrado')
+        }
+        response.status(200).json({ message: 'Produto encontrado:', sqlResult })
+    } catch (error) {
+        response.status(500).send({ message: 'Deu ruim ao encontrar o produto', error: error.message })
     }
 }
