@@ -9,6 +9,6 @@ class Purchase {
     }
 
     getProductsByClient(client_id) {
-        
+        const sqlResult = await sql``
     }
 }
