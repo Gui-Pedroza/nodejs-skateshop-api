@@ -35,12 +35,14 @@ class Product {
     }
 
     async update(id, name, value) {
+        let sqlResult
         if (name) {
-            let sqlResult = await sql`update product set name = ${name} where id = ${id}`
+            sqlResult = await sql`update product set name = ${name} where id = ${id} returning *`
         }
         if (value) {
-            let sqlResult = await sql`update product set value = ${value} where id = ${id}`
+            sqlResult = await sql`update product set value = ${value} where id = ${id} returning *`
         }
+        console.log(sqlResult);
         return sqlResult
     }
 

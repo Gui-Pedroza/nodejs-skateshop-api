@@ -48,10 +48,19 @@ export const findById = async (request, response) => {
 }
 
 export const update = async (request, response) => {
-
+    const id = request.params.id
+    const name = request.body.name
+    const value = request.body.value
+    try {
+        const sqlResult = await productModel.update(id, name, value)
+        producExists(sqlResult, 'Produto não encontrado, nenhum registro atualizado')
+        response.status(200).json({ message: 'Registro atualizado:', sqlResult })
+    } catch (error) {
+        response.status(500).send({ message: 'Deu ruim ao atualizar o produto', error: error.message })
+    }
 }
 
-const producExists(sqlResult, error) => {
+const producExists = (sqlResult, error) => {
     if (sqlResult.length === 0) {
         throw new Error(error)
     }
