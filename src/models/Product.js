@@ -33,6 +33,17 @@ class Product {
         console.log(sqlResult)
         return sqlResult
     }
+
+    async update(id, name, value) {
+        if (name) {
+            let sqlResult = await sql`update product set name = ${name} where id = ${id}`
+        }
+        if (value) {
+            let sqlResult = await sql`update product set value = ${value} where id = ${id}`
+        }
+        return sqlResult
+    }
+
 }
 
 export default Product
