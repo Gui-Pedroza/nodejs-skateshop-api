@@ -8,7 +8,18 @@ class Purchase {
         this.quantity = quantity
     }
 
-    getProductsByClient(client_id) {
-        const sqlResult = await sql``
+    async getProductsByClient(client_id) {
+        const sqlResult = await sql`SELECT
+        client.name as client_name,
+        product.name as product_name,    
+        purchase.quantity
+    FROM purchase
+    JOIN product ON purchase.product_id = product.id
+    JOIN client ON purchase.client_id = client.id
+    WHERE purchase.client_id = ${client_id};
+    `    
+    return sqlResult
     }
 }
+
+export default Purchase
